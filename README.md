@@ -60,7 +60,7 @@ An interactive, zero-backend web application for visually stepping through exact
 ## Getting Started
 
 ### Prerequisites
-- **Node.js** `>= 18` and **npm**
+- **Node.js** `>= 24` (`24` or `26` LTS) and **npm**
 
 ### Commands
 
@@ -176,19 +176,19 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 26
           cache: npm
       - run: npm ci
       - run: npm test
       - run: npm run build
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: dist
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
 ```
 
 ### Option 2: Cloudflare Pages / Netlify / Vercel
@@ -197,7 +197,7 @@ Connect your Git repository and configure:
 
 - **Build command**: `npm run build`
 - **Publish / Output directory**: `dist`
-- **Node.js version**: `18` or `20`
+- **Node.js version**: `24` or `26`
 
 ### Option 3: Self-Hosted Static Server (Caddy / Nginx / Node)
 

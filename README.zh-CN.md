@@ -60,7 +60,7 @@
 ## 快速开始
 
 ### 环境要求
-- **Node.js** `>= 18` 与 **npm**
+- **Node.js** `>= 24`（`24` 或 `26` LTS）与 **npm**
 
 ### 常用命令
 
@@ -176,19 +176,19 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 26
           cache: npm
       - run: npm ci
       - run: npm test
       - run: npm run build
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: dist
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
 ```
 
 ### 方式二：Cloudflare Pages / Netlify / Vercel
@@ -197,7 +197,7 @@ jobs:
 
 - **构建命令（Build command）**：`npm run build`
 - **输出目录（Publish / Output directory）**：`dist`
-- **Node.js 版本**：`18` 或 `20`
+- **Node.js 版本**：`24` 或 `26`
 
 ### 方式三：自建静态服务器（Caddy / Nginx / Node）
 
